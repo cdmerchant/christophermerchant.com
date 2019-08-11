@@ -1,0 +1,2 @@
+  rclone sync public_html:/mnt/public_html/christophermerchant_com/ christophermerchant_com:/var/www/html/ --exclude=/w/ --exclude=/t/ -v &>> /mnt/backups/logs/phoenix_pubhtml_sync.txt
+

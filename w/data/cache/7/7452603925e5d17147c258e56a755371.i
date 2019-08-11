@@ -1,0 +1,1 @@
+a:3:{i:0;a:3:{i:0;s:14:"document_start";i:1;a:0:{}i:2;i:0;}i:1;a:3:{i:0;s:12:"preformatted";i:1;a:1:{i:0;s:182:"rclone sync public_html:/mnt/public_html/christophermerchant_com/ christophermerchant_com:/var/www/html/ --exclude=/w/ --exclude=/t/ -v &>> /mnt/backups/logs/phoenix_pubhtml_sync.txt";}i:2;i:0;}i:2;a:3:{i:0;s:12:"document_end";i:1;a:0:{}i:2;i:0;}}

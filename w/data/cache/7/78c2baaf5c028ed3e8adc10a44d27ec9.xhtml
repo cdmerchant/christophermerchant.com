@@ -1,0 +1,71 @@
+
+<p>
+To write the output of a command to a file, there are basically 10 commonly used ways.
+Overview:
+</p>
+<pre class="code">  Please note that the n.e. in the syntax column means &quot;not existing&quot;.
+  There is a way, but it&#039;s too complicated to fit into the column. You can find a helpful link in the List section about it.</pre>
+<pre class="code">        || visible in terminal ||   visible in file   || existing
+Syntax  ||  StdOut  |  StdErr  ||  StdOut  |  StdErr  ||   file   </pre>
+
+<h1 class="sectionedit1" id="section">++==========+==========++==========+==========++</h1>
+<div class="level1">
+<pre class="code">  &gt;     ||    no    |   yes    ||   yes    |    no    || overwrite
+  &gt;&gt;    ||    no    |   yes    ||   yes    |    no    ||  append
+        ||          |          ||          |          ||
+ 2&gt;     ||   yes    |    no    ||    no    |   yes    || overwrite
+ 2&gt;&gt;    ||   yes    |    no    ||    no    |   yes    ||  append
+        ||          |          ||          |          ||
+ &amp;&gt;     ||    no    |    no    ||   yes    |   yes    || overwrite
+ &amp;&gt;&gt;    ||    no    |    no    ||   yes    |   yes    ||  append
+        ||          |          ||          |          ||</pre>
+
+<p>
+ | tee    ||   yes    |   yes    ||   yes    |    no    || overwrite
+ | tee -a ||   yes    |   yes    ||   yes    |    no    ||  append
+</p>
+<pre class="code">        ||          |          ||          |          ||</pre>
+
+<p>
+ n.e. (*) ||   yes    |   yes    ||    no    |   yes    || overwrite
+ n.e. (*) ||   yes    |   yes    ||    no    |   yes    ||  append
+</p>
+<pre class="code">        ||          |          ||          |          ||</pre>
+
+<p>
+|&amp; tee    ||   yes    |   yes    ||   yes    |   yes    || overwrite
+</p>
+<div class="table sectionedit2"><table class="inline">
+	<tr class="row0">
+		<td class="col0" colspan="2">&amp; tee -a </td><td class="col2 centeralign">   yes    </td><td class="col3 centeralign" colspan="2">   yes    </td><td class="col5 centeralign">   yes    </td><td class="col6 centeralign" colspan="2">   yes    </td>
+	</tr>
+</table></div>
+<!-- EDIT{&quot;target&quot;:&quot;table&quot;,&quot;name&quot;:&quot;&quot;,&quot;hid&quot;:&quot;table&quot;,&quot;secid&quot;:2,&quot;range&quot;:&quot;1553-1619&quot;} -->
+<p>
+List:
+</p>
+<pre class="code">  command &gt; output.txt</pre>
+<pre class="code">  The standard output stream will be redirected to the file only, it will not be visible in the terminal. If the file already exists, it gets overwritten.</pre>
+<pre class="code">  command &gt;&gt; output.txt</pre>
+<pre class="code">  The standard output stream will be redirected to the file only, it will not be visible in the terminal. If the file already exists, the new data will get appended to the end of the file.</pre>
+<pre class="code">  command 2&gt; output.txt</pre>
+<pre class="code">  The standard error stream will be redirected to the file only, it will not be visible in the terminal. If the file already exists, it gets overwritten.</pre>
+<pre class="code">  command 2&gt;&gt; output.txt</pre>
+<pre class="code">  The standard error stream will be redirected to the file only, it will not be visible in the terminal. If the file already exists, the new data will get appended to the end of the file.</pre>
+<pre class="code">  command &amp;&gt; output.txt</pre>
+<pre class="code">  Both the standard output and standard error stream will be redirected to the file only, nothing will be visible in the terminal. If the file already exists, it gets overwritten.</pre>
+<pre class="code">  command &amp;&gt;&gt; output.txt</pre>
+<pre class="code">  Both the standard output and standard error stream will be redirected to the file only, nothing will be visible in the terminal. If the file already exists, the new data will get appended to the end of the file..</pre>
+<pre class="code">  command | tee output.txt</pre>
+<pre class="code">  The standard output stream will be copied to the file, it will still be visible in the terminal. If the file already exists, it gets overwritten.</pre>
+<pre class="code">  command | tee -a output.txt</pre>
+<pre class="code">  The standard output stream will be copied to the file, it will still be visible in the terminal. If the file already exists, the new data will get appended to the end of the file.</pre>
+<pre class="code">  (*)</pre>
+<pre class="code">  Bash has no shorthand syntax that allows piping only StdErr to a second command, which would be needed here in combination with tee again to complete the table. If you really need something like that, please look at &quot;How to pipe stderr, and not stdout?&quot; on Stack Overflow for some ways how this can be done e.g. by swapping streams or using process substitution.</pre>
+<pre class="code">  command |&amp; tee output.txt</pre>
+<pre class="code">  Both the standard output and standard error streams will be copied to the file while still being visible in the terminal. If the file already exists, it gets overwritten.</pre>
+<pre class="code">  command |&amp; tee -a output.txt</pre>
+<pre class="code">  Both the standard output and standard error streams will be copied to the file while still being visible in the terminal. If the file already exists, the new data will get appended to the end of the file.</pre>
+
+</div>
+<!-- EDIT{&quot;target&quot;:&quot;section&quot;,&quot;name&quot;:&quot;++==========+==========++==========+==========++&quot;,&quot;hid&quot;:&quot;section&quot;,&quot;codeblockOffset&quot;:0,&quot;secid&quot;:1,&quot;range&quot;:&quot;439-&quot;} -->
